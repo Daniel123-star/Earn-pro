@@ -1,0 +1,226 @@
+<!DOCTYPE.html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, intial-scale=1.0">
+    <title>Earn Pro</title>
+    <meta name="description"content="Earn Pro - Make money online easily">
+    <link rel="icon" href="data : image/
+    png;base54,ivBORw0KGgoAAANSUhEUgAACAAAAAgCAYAAABzenr0AAABw0lEQVRYR+2XvU4DMRCGZ2Q7ABUQEtgCI5gA4g
+    ApABECFBEFAJUgAqIA/
+    5xq7A79QEjPr7t+fH3u51+33k0i+6b1wA12ANXwBHZnE+A44fWMnANf9t9Jx+cF1QhMMALvi5+MTgEkGKwAphkyALsBc4BUQ
+    DOZ1CEoFfAgC2gMeIOUXxICbXKAGOCR4AZK5QK0Ad4c+zXbci0T00DIlxgFMCz4PoN2y+LDB8twL/
+    B4B06nU99PztqAH6M7wJYbYbWYazrPZ3UAyAq+F1K19pH+AfY4rEMbsJuCoC/
+    EZ+ZDRD1QB7LTFZVhGgMfC2g4s6rj5zZK1akQhWDTQHc3x/
+    n3uXhrA21fY3n71FMPAE0gGtGtgY2Ug70Aa7tgGeYcY6aDP6Hm2q7TKQMyQAAAABJRU5ErkJggg==" />
+    <style>
+    body { font-family: Arial, sans-serif;
+    backgound:#f5f5f5; margin:0; padding:0; text-align:center;}"
+    #splash
+    {position:fixed;top:0;left:0;width:100%;height:100%;background:#28a745;display:flex;
+    align-items:center;justify-content:center;flex-direction:column;
+    color: white;
+font-size:28px;
+z-index:9999;}
+@Keyframes spin {0%
+{transform:rotate(0deg);}100%
+{transform:rotate(360deg);}}
+#splash image
+{width:100px;
+height:100px;
+animation:spin 2s linear infinite;}
+.box
+{background:white;
+padding:20px;
+margin:20px auto;
+max-width:420px;
+border-radius:10px;}
+button
+{padding:10px>
+margin:5px;
+background:#28a745;
+color:white;
+border:none;
+border-radius:5px;
+width:90%;}
+.balance { font-size:22px;}
+.userCard
+{background:#eee;
+color:white;
+padding:10px;
+border-radius:5px;}
+.admin
+{background:#222;
+color:white;
+padding:10px;
+border-radius:10px;
+margin-top:20px;}
+.lock
+{background:#ffdddd;
+padding:10px;
+border-radius:10px;}
+</style>
+</head>
+<body>
+
+<div id="splash">
+<img src="data:image/
+"png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABW0lEQVRYR+2XvU4DMRCGZ2Q7ABUQEtgCI5gA4g
+ApABECFBEFAJUgAqIA/5xq7A79QEjPr7T+fH3u5I+33kOi+
+6b1wAl2ANXwBHZnE+A44fWMnANf9T9JX+cFlQhMMALvi5+MTgEkGKwAphkyALs
+Bc4BuqD0Z1CEoFfAgC2gMeIOUXxICbXkAGoCr4AZK5QK0Ad4C+zXbci0T0ODIlxgFMCz4APoN2y+LDB8twL/
+B4B06nU99PztqAH6M7wJYbYbWYazrPz3UAzAq+FlK19pH+AFY4rEMbsJuCoC/EZ+ZDRD1QB7LTFZVhGgMfC2g4s6rj5z
+Zk1akQhWDTQHc3x/n3uXhrA2IfY3n7iFMPAEOgGtgY2Ug7gQ70Aa7tgGeYcY6aDP6Hm2q7TkQMyQAAAABJRU5ErkJggg=="/>
+<p>Earn Pro</P>
+</div>
+
+<div class="box">
+    <h2> $ Earn Pro</h2>
+    <button onclick="Login()">Login with Google</button>
+    <div id="lockscreen" class="lock"
+    style="display:none;">
+    <h3>Acess Fee N100</h3>
+    <p>Pay manually to unlock app</p>
+    <p><b>Bank: </b> MOMO</p>
+    <p><b>Name: </b> Samuel Ejimozor</p>
+    <p><b>Account: </b> 8069414519 </p>
+    <input id="ref" placeholder="Enter payment reference"><br>
+    <button onclick="submitPayment()">Submit Payment</button>
+    <p id="status"></p>
+</div>
+
+<div id="app" style="display:none;">
+    <p id="user"></p>
+    ydiv class="balance" id="balance">N0</div>
+    <button onclick="earn()">Do Task</button>
+</div>
+
+<div id="app" style="display:none;">
+    <p id="user"></p>
+    <div class="balance" id="balance">N0</div>
+    <button onclick="arn()">DO TASK</button>
+</div>
+
+<div id="adminPanel" class="admin"
+style="display:none;">
+<h3> Admin Dashborad</h3>
+<div id="usersList"></div>
+</div>
+</div>
+
+<script>
+    src="https://WWW.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script>
+        src="https://WWW.gstatic:com/firebasejs10.7.1/firebase-auth.js"></script>
+        <script>
+            src="https://WWW.gstatic.com/firebasejs/10.7.1/firebase-firestone.js"></script>
+
+<script>
+    //Firebase config
+    const firebaseConfig = {
+        apiKey:"8069414519",
+        authDomain:
+        "YOUR_PROJECT.firebaseapp.com",
+        projectId:"YOUR_PROJECT",
+    };
+    firbase.intializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestone();
+
+    let currentuser;
+    let isAdmin=false;
+
+    window.onload =() =>
+    setTimeout(()=>{document.getElementById('splash').style.display='none';},2000);
+    
+    //Login
+    function login(){
+        const provider = new
+        firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider);
+    }
+
+    //After login
+    auth.onAuthStateChanged(asnyc user=>{
+        if(user){
+    currentUser=user;
+
+    document.getElementById("user").innerText=user.displayName;
+    awit checkAdmin();
+
+    document.getElementById("adminPanel").style.displayName;
+    await checkAdmin();
+    awit checkAccess();
+    if(isAdmin);
+    {document.getElememtById("adminPanel").style.display="block"; loadUsers();}
+        }
+    });
+    //check admin
+    async function checkAdmin(){
+        const doc = awaitdb.collections("admins").doc(currentUser.uid).get();
+        if(doc exists) isAdmin=true; 
+        }
+    
+        //check Access
+        async function checkAccess(){
+            const ref =
+            db.collection("users").doc(currentUser.uid);
+            consr doc = awit ref.get();
+            if(!doc exists){
+                await ref .set({name:
+                    currentUser.displayName, balance:0, access:false});
+            }
+            ref.onSnapshot(snap=>{
+                letdata=snap.data();
+                    if(data access){
+                        document.getElememtById("lockscreen").style.display="none";
+                        document.getElememtById("app").style.display="block";
+                        document.getElememtById("balance").innerText="N"+data.balance;
+                    } else{
+                        document.getElememtById("LockScreen").style.display="block";
+                    }
+                    }
+                
+            });
+             // Submit Payment Manually
+             async function submitPayment(){
+                letrefText=documenet.getElememtById("ref").value;
+                if(!refText),
+                status:"pending"
+             });
+             
+             document.getElementById("staus").innerText="Waiting for admin approval";
+        }
+        // Earn task Points
+        async function earn(){
+            const
+            ref=db.collection("users").doc(currentUser.uid);
+            awit ref.update({balance:
+                firebase.firestore.FieldValue.increment(500)});
+        }
+
+        //Admin: load all users + payments function loadAllUsers(){
+        db.collection("payments").onSnapshot(Snapshot=>{
+        let htnk="";
+        snapshot.forEach(doc=>{
+            let p=doc.data();
+            html+=
+            <div class="userCard">
+                <b>${p.name}</b><br>
+                Ref: ${p.name}</br>
+                Status: ${p.status}<br>
+                <button> onclick="Aprove</button>"</div>;
+            });
+            document.getElememtById("usersList").innerHTML=html;
+        });
+    }
+     
+    // Admin Approve Payment
+     async function approve(id,uid){
+        awaitdb.collection("payments").doc(id).updates({status:"approved"});
+        await 
+        db.collection("users").doc(uid).update({access:true});
+     }
+     </script>
+     </body>
+     </html>
