@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0">
+    <title> Sign Up / Premium Webste</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #74ebd5, #ABC6E5);
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+        .auth-box input {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .auth-box button, .container button{
+            padding: 12px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .auth-box button:hover, .container button:hover{
+            background-color: #45a049;
+        }
+        .container button.Pay {
+            background-color: #f57c00;
+        } 
+        .container button.Pay:hover {
+            background-color: #e65100;
+        }
+        #message, #paymentMessage {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+        h1 { margin-bottom: 20px;}
+        h2 { margin: 15px 0 10px 0; }
+        select {
+            padding: 10px;
+            margin: 15px 0;
+            width: 60%;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="authContainer">
+        <h1> Welcome!</h1>
+        <div class="auth-box">
+            <h2>Sign Up</h2>
+            <input type="email" id="signinEmail" placeholder="Email">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <button onclick="Signin()">SignIn</button>
+            <p id="message"></p>
+        </div>        
+    </div>
+
+    <div class="container" id="premiumContainer" style="display: none;">
+        <h1> Premium Access</h1>
+        <p> Select an amount:</p>
+        <select id="paymentAmount">
+            <option value="100">N100</option>
+            <option value="1000">N1000</option>
+            <option value="2000">N2000</option>
+        </select> 
+        <br>
+        <button class="pay" onclick="payKuda()">Pay with Kuda</button>
+        <p id="paymentMessage"></p>
+    </div>
+
+    <script>
+        let user = null
+
+        function signup() {
+            const email = document.getElementById('signupEmial').value;
+            const password = document.getElementById('signupPassword').value;
+            if (!user) {
+                document.getElementById('message').textContent = "No user signed up yet!";
+                return;
+            }
+            if (email === user.email && password === user.password) {
+                showPremium()
+            } else {
+                document.getElementById('message').textContent = "Email or password incorrect!";
+            }
+        }
+
+        function showPremium() {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('premiumContainer').style.display = 'block';
+        } 
+
+        function payKuda() {
+            const amount = document.getElementById('paymentAmount').value;
+            const paymentUrl = "https://kuda.com/pay/2084945495?amount=" + amount;
+            window.open(paymentUrl, "_blank");
+            document.getElementById('paymentMessage').textContent = 'Payment page opened for N$' + amount + '. Complete your payment to access premium content.';
+        }
+    </script>
+
+</body>
+</html>
